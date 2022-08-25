@@ -38,6 +38,11 @@ var ataque = false
 var grupoProjetilJogador
 var coisaDoMapa
 var voceMorreu
+var armaduraIcone
+var armaduraIconeIMG
+
+var SomMorrendo
+var somFlexa
 function preload(){
 cenarioIMG = loadImage("teste de cenario.png")
 golemP = loadImage("pixil-frame-0 (10).png")
@@ -68,7 +73,10 @@ cabanaGoblinIMG = loadImage("caban goblin.png")
 inventario = loadImage("inventario.png")
 iconeInventario = loadImage("icone inventario.png")
 voceMorreuIMG = loadImage("voceMorreu.png")
+armaduraIconeIMG = loadImage("armadura icone.png")
 
+SomMorrendo = loadSound("personagem morrendo.mpeg")
+somFlexa =loadSound("som flexa.mp3")
 }
 
 function setup() {
@@ -78,6 +86,8 @@ function setup() {
  voceMorreu.addImage(voceMorreuIMG)
  voceMorreu.scale = 10
  voceMorreu.visible = false
+ cutcene = createSprite(10, 480)
+
  cenario = createSprite(300, 250)
  cenario.addImage(cenarioIMG)
  cenario.scale = 5
@@ -90,6 +100,7 @@ function setup() {
  fazendeiro=createSprite(1500,250)
  fazendeiro.addImage(fazendeiroIMG)
  homem = createSprite(10, 480)
+
  coisaDoMapa = new Group()
 coisaDoMapa.add(cabanaGoblin)
 coisaDoMapa.add(casaFazendeiro)
@@ -202,10 +213,15 @@ atirado.remove()
                                                                         
                                                                         }
 
+                                                                        
+                                    
+
 
 
 if(homem.isTouching(inimigos)){
     homem.destroy()
+    SomMorrendo.play()
+    SomMorrendo.setVolume(7)
     inimigos.destroyEach()
     coisaDoMapa.destroyEach()
 
@@ -237,6 +253,8 @@ inimigos.add(goblinLanca)
 
 function keyPressed(){
     if(keyCode == 82){
+        somFlexa.play()
+    somFlexa.setVolume(7)
         flexa = createSprite(homem.x,homem.y)
         flexa.addImage(flexaIMG)
         flexa.velocityX = 30
