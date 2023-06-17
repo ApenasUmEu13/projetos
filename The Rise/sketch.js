@@ -26,6 +26,8 @@ var flexa
 var flexaDeFogo
 var fazendeiroIMG
 var flexaIMG
+var poderzin
+var poderzinIMG
 var flexaDeFogoIMG
 var cabanaGoblinIMG
 var casaFazendeiroIMG
@@ -259,6 +261,14 @@ function keyPressed(){
         flexa.addImage(flexaIMG)
         flexa.velocityX = 30
         grupoProjetilJogador.add(flexa)
+    }
+}
+function keyPressed(){
+    if(keyCode == 70){
+        flexaDeFogo = createSprite(homem.x,homem.y)
+        flexaDeFogo.addImage(flexaDeFogoIMG)
+        flexaDeFogo.velocityX = 40
+        grupoProjetilJogador.add(flexaDeFogo)
     }
 }
 
